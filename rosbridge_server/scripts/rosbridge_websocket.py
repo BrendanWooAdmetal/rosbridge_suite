@@ -248,7 +248,10 @@ if __name__ == "__main__":
 
     # To be able to access the list of topics and services, you must be able to access the rosapi services.
     if RosbridgeWebSocket.services_glob:
-        RosbridgeWebSocket.services_glob.append("/rosapi/*")
+        # Allowing all services defeats the purpose of the services_glob. Only allow necessary services
+        # RosbridgeWebSocket.services_glob.append("/rosapi/*")
+        RosbridgeWebSocket.services_glob.append("/rosapi/topics")
+        RosbridgeWebSocket.services_glob.append("/rosapi/services")
 
     Subscribe.topics_glob = RosbridgeWebSocket.topics_glob
     Advertise.topics_glob = RosbridgeWebSocket.topics_glob
